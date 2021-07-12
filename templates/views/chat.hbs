@@ -1,0 +1,61 @@
+<html>
+
+  <head>
+    <title>ChatApp</title>
+  </head>
+
+  <body>
+    <div class="chat-content">
+      {{! if it will be rendered from the backend }}
+      {{! else it will give an error }}
+      <form action="joinRoom" id="joinRoom">
+        <input type="text" name="username" placeholder="RoomName" />
+        <button type="submit">Join</button>
+      </form>
+      {{! here in userlist we will get all the rooms user is part of and the user with whom it has a chat
+        that can be done as
+        we will query from users get its chatList, roomList attribute
+        maintain room as (_id, name, userList which will have usernames)
+        and sort by updated at }}
+      <div id="UserList">
+        <h1>UserList+Rooms</h1>
+        <ul class="user_list">
+          {{#each userList}}
+            {{!-- <a onclick="fetchMessages()">{{this.username}}</a> --}}
+            <input type='button' value={{this.username}} onclick='fetchMessages(this)'/>
+            <br>
+          {{/each}}
+        </ul>
+        {{!-- {{userList.fo}} --}}
+        {{! here we will add userList }}
+        {{! then when its clicked then we will add messages below
+            so will have to add event Listeners }}
+      </div>
+      {{! when a user is being clicked then we will get its messages of last 2 days from messages history }}
+      <div id="Chat" content>
+        <h1>Messages</h1>
+        <div class="messages">
+          {{! here we will dynamically add messages }}
+          <ul id="messages">
+
+          </ul>
+        </div>
+        <h1>SendMessageHere</h1>
+        {{! when message is typed then we just emit it to with room name or userID i.e username }}
+        <form id="message-form">
+          <input
+            type="text"
+            id="message-box"
+            value=""
+            placeholder="Enter your message here"
+          />
+          <input type="submit" value="Send" />
+        </form>
+      </div>
+    </div>
+
+    <script src="socket.io/socket.io.js"></script>
+    <script src="/js/app.js"></script>
+  </body>
+
+</html>

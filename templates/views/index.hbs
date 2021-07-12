@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+    <title>ChatApp</title>
+</head>
+
+<body>
+    <div class="main-content">
+        <p>Chat-App</p>
+        {{!-- if it will be correct then it will render the chat.hbs from backend --}}
+        {{!-- else it will give an error --}}
+        <form action="addUser" id="joinUser" method="POST">
+            <input id="username" type="text" name="username" placeholder="Email">
+            <button type="submit">Join</button>
+        </form>
+    </div>
+    <script src="/js/index.js"></script>
+</body>
+
+</html>
