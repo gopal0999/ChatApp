@@ -9,8 +9,10 @@ const app = express()
 const server = http.createServer(app)
 const io = socketio(server)
 
+const {dbpassword,dbuser} = require("./config/config")
+
 const { MongoClient } = require('mongodb');
-const uri = "mongodb+srv://<username>:<password>@cluster0.ii2uh.mongodb.net/myFirstDatabase?retryWrites=true&w=majority";
+const uri = `mongodb+srv://${dbuser}:${dbpassword}@cluster0.ii2uh.mongodb.net/myFirstDatabase?retryWrites=true&w=majority`
 const client = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology: true });
 
 const port = process.env.PORT || 3000
@@ -125,6 +127,7 @@ app.post('/addUser', async (req, res) => {
                 );
             }
             userList = await users.find().toArray();
+            // console.log(userList)
         } catch (error) {
             console.log(error)
         }

@@ -35,7 +35,7 @@ socket.on("message", (message) => {
   console.log("a message was sent")
   console.log(message)
   let messagesElement = document.getElementById("messages")
-  messagesElement.innerHTML += `<li>${message}</li>` 
+  messagesElement.innerHTML += `<li>${message}</li>`
 })
 
 const fetchMessages = (objName) => {
@@ -67,9 +67,8 @@ const fetchMessages = (objName) => {
     //   messagesElement.appendChild(liElement)
     // });
     console.log(messagesElement)
-    for(message of messages)
-    {
-      messagesElement.innerHTML+=`<li>${message.content}</li>`
+    for (message of messages) {
+      messagesElement.innerHTML += `<li>${message.content}</li>`
     }
     console.log(messagesElement)
   }
@@ -84,7 +83,7 @@ messageForm.addEventListener("submit", (e) => {
   e.preventDefault()
   let message = document.getElementById("message-box")
   console.log(message.value)
-  // socket.on("connect", () => {
+  let messagesElement = document.getElementById("messages")
+  messagesElement.innerHTML += `<li>${message.value}</li>`
   socket.emit("message", { fromUsername: userName, toUsername: localStorage.getItem("toUsername"), content: message.value })
-  // });
 })
